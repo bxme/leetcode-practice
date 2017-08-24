@@ -10,8 +10,8 @@ A linked list can be reversed either iteratively or recursively. Could you imple
 
 ------------------------------------------------------------------------------------
 想法:
-iteratively:取出下個節點,更改下個節點指向,將指標往下移動,直到整個kinked list
-
+iteratively:取出下個節點,更改下個節點指向,將指標往下移動,直到整個linked list
+recursively:
 
 ------------------------------------------------------------------------------------
 解法:
@@ -25,18 +25,19 @@ iteratively:
  * };
  */
 struct ListNode* reverseList(struct ListNode* head) {
-		ListNode* pre = NULL;
-		ListNode* current = head;
-		ListNode* next = NULL;
+	struct ListNode* pre = NULL;
+	struct ListNode* current = head;
+	struct ListNode* next = NULL;
 		
-		while(current != NULL)
-		{
-			next = current->next;
-			current->next = pre;
-			pre = current;
-			current = next;
-		
-		}
+	while(current != NULL)
+	{
+		next = current->next;
+		current->next = pre;
+		pre = current;
+		current = next;
+	}
 
-		retuen pre;
+	return pre;
 }
+
+
