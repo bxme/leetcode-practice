@@ -1,0 +1,42 @@
+------------------------------------------------------------------------------------
+問題:
+
+Reverse a singly linked list.
+
+click to show more hints.
+
+Hint:
+A linked list can be reversed either iteratively or recursively. Could you implement both?
+
+------------------------------------------------------------------------------------
+想法:
+iteratively:取出下個節點,更改下個節點指向,將指標往下移動,直到整個kinked list
+
+
+------------------------------------------------------------------------------------
+解法:
+iteratively:
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode* reverseList(struct ListNode* head) {
+		ListNode* pre = NULL;
+		ListNode* current = head;
+		ListNode* next = NULL;
+		
+		while(current != NULL)
+		{
+			next = current->next;
+			current->next = pre;
+			pre = current;
+			current = next;
+		
+		}
+
+		retuen pre;
+}
