@@ -11,7 +11,7 @@ A linked list can be reversed either iteratively or recursively. Could you imple
 ------------------------------------------------------------------------------------
 想法:
 iteratively:取出下個節點,更改下個節點指向,將指標往下移動,直到整個linked list
-recursively:
+recursively:不斷遞迴直到head指到最後一個節點,revHead就變成起始節點,再不斷把head指到revHead的最新節點
 
 ------------------------------------------------------------------------------------
 解法:
@@ -38,6 +38,22 @@ struct ListNode* reverseList(struct ListNode* head) {
 	}
 
 	return pre;
+}
+
+recursively:
+
+struct ListNode* reverseList(struct ListNode* head) {
+	struct ListNode * revHead;
+	
+	if(head == NULL || head->next == NULL)
+		return head;
+			
+	revHead = reverseList(head->next);		
+			
+	head->next->next = head;
+	head->next = NULL;		
+
+    return revHead;
 }
 
 
