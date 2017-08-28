@@ -1,0 +1,58 @@
+------------------------------------------------------------------------------------
+問題:
+Given a string, you need to reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
+
+Example 1:
+Input: "Let's take LeetCode contest"
+Output: "s'teL ekat edoCteeL tsetnoc"
+Note: In the string, each word is separated by single space and there will not be any extra space in the string.
+
+
+------------------------------------------------------------------------------------
+想法:
+以空格分割,再反轉每個字串
+
+
+------------------------------------------------------------------------------------
+解法:
+
+char* reverseString(char* s)
+{
+	int n = strlen(s);
+	int i;
+	char temp;
+	
+	for(i = 0; i< n/2; i++)
+	{
+		temp = s[i];
+		s[i] = s[n-1-i];
+		s[n-1-i] = temp;	
+	}
+	
+	return s;
+}
+
+char* reverseWords(char* s) {
+    int n = strlen(s);
+    int i;
+    int start = 0;
+    char* temp = malloc(n*sizeof(char));
+    
+    if(n == 0)	return s;
+    
+    for(i=0;i<n;i++)
+    {
+    	if(s[i] == ' ')	
+    	{
+    		s[i] = '\0';
+    		strcpy(&temp[start], reverseString(&s[start]));
+    		start = i + 1;
+    		temp[i] = ' ';
+    	}
+    	else if(i == n-1)
+    	{
+    		strcpy(&temp[start], reverseString(&s[start]));
+    	}
+    }
+    return temp;
+}
